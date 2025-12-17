@@ -1,0 +1,24 @@
+﻿@model UpdateTagDto
+@{
+    ViewData["Title"] = "UpdateTag";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h3>Etiket Güncelle</h3>
+            <form method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label>İsim</label>
+                    <input type="text" asp-for="Name" class="form-control" />
+                    <span class="text-danger" asp-validation-for="Name"></span>
+                </div>
+
+                <button class="btn btn-primary mt-2">Kaydet</button>
+
+            </form>
+        </div>
+    </div>
+</div>

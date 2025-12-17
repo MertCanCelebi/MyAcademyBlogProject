@@ -1,0 +1,136 @@
+﻿@using System.Text.Json
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                    <h3 class="font-weight-bold">Hoşgeldin @User.Identity.Name</h3>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 grid-margin transparent">
+            <div class="row">
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                    <div class="card card-tale">
+                        <div class="card-body">
+                            <p class="mb-4">Toplam Kategori Sayısı</p>
+                            <p class="fs-30 mb-2">@ViewBag.categoryCount</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                    <div class="card card-dark-blue">
+                        <div class="card-body">
+                            <p class="mb-4">Toplam Yorum Sayısı</p>
+                            <p class="fs-30 mb-2">@ViewBag.commentsCount</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6 grid-margin transparent">
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                    <div class="card card-light-blue">
+                        <div class="card-body">
+                            <p class="mb-4">Toplam Yazar Sayısı</p>
+                            <p class="fs-30 mb-2">@ViewBag.writerCount</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 stretch-card transparent">
+                    <div class="card card-light-danger">
+                        <div class="card-body">
+                            <p class="mb-4">En Son Yazı Yazan Yazar</p>
+                            <p class="fs-30 mb-2">@ViewBag.lastBlogWriter</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <h4>Kategorilere Göre Blog Sayıları</h4>
+                <canvas id="categoryChart"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <h4>Yazara Göre Blog Sayıları</h4>
+                <canvas id="writerChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const categoryLabels = @Html.Raw(JsonSerializer.Serialize(ViewBag.CategoryNames));
+    const blogData = @Html.Raw(JsonSerializer.Serialize(ViewBag.BlogCounts));
+
+    new Chart(document.getElementById('categoryChart'), {
+        type: 'bar',
+        data: {
+            labels: categoryLabels,
+            datasets: [{
+                label: 'Blog Sayısı',
+                data: blogData,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+<script>
+    const writerLabels = @Html.Raw(JsonSerializer.Serialize(ViewBag.WriterNames));
+    const writerBlogData = @Html.Raw(JsonSerializer.Serialize(ViewBag.WriterBlogCounts));
+
+    new Chart(document.getElementById('writerChart'), {
+        type: 'bar',
+        data: {
+            labels: writerLabels,
+            datasets: [{
+                label: 'Blog Sayısı',
+                data: writerBlogData,
+                backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision: 0
+                    }
+                }
+            }
+        }
+    });
+</script>

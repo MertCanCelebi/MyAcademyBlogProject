@@ -1,0 +1,63 @@
+﻿@model List<ResultBlogDto>
+@{
+    ViewData["Title"] = "GetBlogsByCategory";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="section search-result-wrap">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="heading">Kategori: @ViewBag.categoryName</div>
+			</div>
+		</div>
+		<div class="row posts-entry">
+			<div class="col-lg-8">
+
+				@foreach (var item in Model)
+				{
+
+
+					<div class="blog-entry d-flex blog-entry-search-item">
+						<a href="/Blog/BlogDetails/@item.Id" class="img-link me-4">
+							<img src="@item.CoverImage" alt="Image" class="img-fluid">
+						</a>
+						<div>
+							<span class="date">@item.CreatedDate &bullet; <a href="">@ViewBag.categoryName</a></span>
+							<h2><a href="/Blog/BlogDetails/@item.Id">@item.Title</a></h2>
+							<p> @(item.Description.Length < 100 ? item.Description : item.Description.Substring(0, 100) + "...")  </p>
+							<p><a href="/Blog/BlogDetails/@item.Id" class="btn btn-sm btn-outline-primary">Devamını Oku</a></p>
+						</div>
+					</div>
+
+				}
+
+				<div class="row text-start pt-5 border-top">
+					<div class="col-md-12">
+						<div class="custom-pagination">
+							<span>1</span>
+							<a href="#">2</a>
+							<a href="#">3</a>
+							<a href="#">4</a>
+							<span>...</span>
+							<a href="#">15</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 sidebar">
+
+				
+				<!-- END sidebar-box -->
+				@await Component.InvokeAsync("_BlogsByCategoryLatestBlogsComponent")
+				<!-- END sidebar-box -->
+				@await Component.InvokeAsync("_DefaultCategoriesComponent")
+				
+				<!-- END sidebar-box -->
+				@await Component.InvokeAsync("_BlogTagsComponent")
+
+			</div>
+		</div>
+	</div>
+</div>

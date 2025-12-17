@@ -1,0 +1,30 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+@await Component.InvokeAsync("_AdminLayoutHeadComponent")
+<body>
+    <div class="container-scroller">
+        @await Component.InvokeAsync("_AdminLayoutNavbarComponent")
+        <div class="container-fluid page-body-wrapper">
+
+            @await Component.InvokeAsync("_AdminLayoutThemeSettingComponent")
+            @await Component.InvokeAsync("_AdminLayoutSidebarComponent")
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @RenderBody()
+                    
+                </div>
+                @await Component.InvokeAsync("_AdminLayoutFooterComponent")
+            </div>
+        </div>
+    </div>
+    @await Component.InvokeAsync("_AdminLayoutScriptComponent")
+
+</body>
+
+</html>
+

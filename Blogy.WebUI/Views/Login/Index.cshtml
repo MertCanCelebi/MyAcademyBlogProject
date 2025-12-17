@@ -1,0 +1,99 @@
+﻿@model LoginDto
+@{
+    ViewData["Title"] = "Giriş Yap";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin Giriş</title>
+
+    <link rel="stylesheet" href="~/skydash-v.01/vendors/feather/feather.css">
+    <link rel="stylesheet" href="~/skydash-v.01/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="~/skydash-v.01/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/skydash-v.01/css/vertical-layout-light/style.css">
+    <link rel="shortcut icon" href="~/skydash-v.01/images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center justify-content-center auth px-0">
+                <div class="col-lg-4 col-md-6 col-sm-8">
+
+                    <div class="card shadow-lg border-0 rounded-4">
+                        <div class="card-body p-5">
+
+                            <div class="text-center mb-4">
+                                <img src="~/skydash-v.01/images/logo.svg" alt="logo" class="mb-3" style="height:50px;">
+                                <h4 class="font-weight-bold">Hoş Geldiniz 👋</h4>
+                                <p class="text-muted mb-0">Devam etmek için giriş yapın</p>
+                            </div>
+
+                            <form method="post" class="pt-3">
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-white">
+                                                <i class="ti-user text-primary"></i>
+                                            </span>
+                                        </div>
+                                        <input asp-for="UserName"
+                                               class="form-control form-control-lg border-left-0"
+                                               placeholder="Kullanıcı Adı"
+                                               required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-white">
+                                                <i class="ti-lock text-primary"></i>
+                                            </span>
+                                        </div>
+                                        <input asp-for="Password"
+                                               type="password"
+                                               class="form-control form-control-lg border-left-0"
+                                               placeholder="Şifre"
+                                               required>
+                                    </div>
+                                </div>
+
+                                <div class="text-danger small mb-3">
+                                    @Html.ValidationSummary()
+                                </div>
+
+                                <button class="btn btn-primary btn-lg btn-block">
+                                    <i class="ti-login mr-2"></i> Giriş Yap
+                                </button>
+
+                                <div class="text-center mt-4">
+                                    <span class="text-muted">Hesabınız yok mu?</span>
+                                    <a href="/Register/Index/" class="font-weight-bold text-primary">
+                                        Kayıt Ol
+                                    </a>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/skydash-v.01/vendors/js/vendor.bundle.base.js"></script>
+    <script src="~/skydash-v.01/js/off-canvas.js"></script>
+    <script src="~/skydash-v.01/js/hoverable-collapse.js"></script>
+    <script src="~/skydash-v.01/js/template.js"></script>
+    <script src="~/skydash-v.01/js/settings.js"></script>
+    <script src="~/skydash-v.01/js/todolist.js"></script>
+</body>
+</html>

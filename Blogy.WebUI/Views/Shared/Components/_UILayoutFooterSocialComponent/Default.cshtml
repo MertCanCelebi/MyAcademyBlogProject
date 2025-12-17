@@ -1,0 +1,12 @@
+﻿@model List<ResultSocialDto>
+<div class="widget">
+	<h3>Sosyal Medyalar</h3>
+	<ul class="list-unstyled social">
+		@foreach (var item in Model)
+		{
+			<li><a href="@item.Url"><span class="@item.Icon"></span></a></li>
+		}
+
+
+	</ul>
+</div>

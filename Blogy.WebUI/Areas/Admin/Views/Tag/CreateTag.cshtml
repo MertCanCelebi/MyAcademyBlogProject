@@ -1,0 +1,24 @@
+﻿@model CreateTagDto
+@{
+    ViewData["Title"] = "CreateTag";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h3>Yeni Etiket Oluştur</h3>
+            <form method="post">
+
+                <div class="form-group">
+                    <label>İsim</label>
+                    <input type="text" asp-for="Name" class="form-control" />
+                    <span class="text-danger" asp-validation-for="Name"></span>
+                </div>
+
+                <button class="btn btn-primary mt-2">Kaydet</button>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿@model List<ResultBlogDto>
+
+<div class="col-lg-4">
+	<div class="widget">
+		<h3 class="mb-4">Son Eklenen Bloglar</h3>
+		<div class="post-entry-footer">
+			<ul>
+				@foreach(var item in Model)
+				{
+					<li>
+						<a href="/Blog/BlogDetails/@item.Id">
+							<img src="@item.CoverImage" alt="Image placeholder" class="me-4 rounded">
+							<div class="text">
+								<h4>@item.Title</h4>
+								<div class="post-meta">
+									<span class="mr-2">@item.CreatedDate</span>
+								</div>
+							</div>
+						</a>
+					</li>
+				}
+				
+
+			</ul>
+		</div>
+
+
+	</div> <!-- /.widget -->
+</div>

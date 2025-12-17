@@ -1,0 +1,21 @@
+﻿@model List<ResultBlogDto>
+
+<section class="section bg-light">
+	<div class="container">
+		<div class="row align-items-stretch retro-layout">
+
+			@foreach (var item in Model)
+			{
+				<div class="col-md-4">
+					<a href="/Blog/BlogDetails/@item.Id" class="h-entry mb-30 v-height gradient">
+						<div class="featured-img" style="background-image: url('@item.CoverImage');"></div>
+						<div class="text">
+							<span class="date">@item.CreatedDate</span>
+							<h2>@item.Title</h2>
+						</div>
+					</a>
+				</div>
+			}
+		</div>
+	</div>
+</section>

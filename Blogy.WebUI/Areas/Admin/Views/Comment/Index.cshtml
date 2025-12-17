@@ -1,0 +1,63 @@
+﻿@model List<ResultCommentDto>
+@{
+    ViewData["Title"] = "Yorumlar";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="mb-4">Yorumlar</h3>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Blog</th>
+                            <th>Yorum İçeriği</th>
+                            <th>Durum</th>
+                            <th class="text-center">İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <th>@count</th>
+                                <td>@item.Blog.Title</td>
+                                <td style="max-width:400px">
+                                    @item.Content
+                                </td>
+                                <td>
+                                    @if (item.IsToxic)
+                                    {
+                                        <span class="badge bg-danger">
+                                            Toxic yorum
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success">
+                                            Yayında
+                                        </span>
+                                    }
+                                </td>
+                                <td class="text-center">
+
+                                    <a href="/Admin/Comment/DeleteComment/@item.Id"
+                                       class="btn btn-sm btn-danger">
+                                        Sil
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
